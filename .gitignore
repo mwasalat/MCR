@@ -1,0 +1,70 @@
+# =======================================
+# ?? MCR / PHP / Web Project .gitignore
+# =======================================
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+*.out
+*.err
+debug.log
+
+# Vendor / Composer
+/vendor/
+composer.lock
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Uploaded / Generated content
+uploads/
+storage/
+pdfs/
+*.pdf
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Cache
+cache/
+*.cache
+
+# Other
+__pycache__/
+*.sqlite
+*.sql
+*.db
+*.pid
+*.seed
+*.seed.js
+
+# OS junk files
+ehthumbs.db
+Icon?
