@@ -93,99 +93,250 @@ echo "<script>alert('Email not register with us');</script>";
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login System</title>
+<title>MCR System - Mwasalat</title>
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Elegent Tab Forms,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-</script>
+<link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-select {
-        width: 190px;
-        height:50px;
-        margin: 30px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("images/bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.support-banner {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 15px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    border-left: 4px solid #e74c3c;
+}
+
+.support-banner p {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.support-banner a {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.support-banner a:hover {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    max-width: 420px;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-     
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.login-header img {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.login-header h2 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.login-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.login-form {
+    padding: 40px 35px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #e74c3c;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+}
+
+.input-group input:focus + i,
+.input-group input:focus ~ i {
+    color: #e74c3c;
+}
+
+.input-group input::placeholder {
+    color: #aaa;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.footer-text {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+    color: #888;
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        margin: 10px;
+    }
+    
+    .login-header {
+        padding: 30px 20px;
+    }
+    
+    .login-header img {
+        max-width: 150px;
+    }
+    
+    .login-form {
+        padding: 30px 25px;
+    }
+    
+    .support-banner {
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+}
 </style>
-<script src="js/jquery.min.js"></script>
-<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
-				<script type="text/javascript">
-					$(document).ready(function () {
-						$('#horizontalTab').easyResponsiveTabs({
-							type: 'default',       
-							width: 'auto', 
-							fit: true 
-						});
-					});
-				   </script>
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,200italic,300italic,400italic,600italic|Lora:400,700,400italic,700italic|Raleway:400,500,300,600,700,200,100' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div style="margin-left: 25%; margin-top:5px; font-size:14px; padding:10px; width:50%; color:red; background-color: whitesmoke;" id="blink"><center>Dear Team,<br/> Please note that we are moving this application to our new common portal <span style="font-weight:bold; color:#900"><a href="http://mcr.enguae.com/hub/" target="_blank">HUB</a></span> very soon.So the users using this application kindly share your employee no. to <a href="mailto:sanil.sadasivan@onetechnology.biz">sanil.sadasivan@onetechnology.biz</a> for the access of new application. </div>
-<div class="main">
-		<h1 style="font-size: 2em;">MCR System</h1>
-	 <div class="sap_tabs">	
-			<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-			  <ul class="resp-tabs-list">
-			
-				  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><div class="top-img"><img src="images/top-lock.png" alt=""/></div><span>Login</span></li>
-				
-				  <div class="clear"></div>
-			  </ul>		
-			  	 
-			
-			 <div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
-					 	<div class="facts">
-							 <div class="login">
-							<div class="buttons">
-								
-								
-							</div>
-							<form name="login" action="" method="post">
-								<input type="text" class="text" name="uemail" value="" placeholder="Enter your username/registered email" tabindex="1" ><a href="#" class=" icon email"></a>
 
-								<input type="password" value="" name="password" placeholder="Enter valid password" tabindex="2"><a href="#" class=" icon lock"></a>
+<!-- <div class="support-banner">
+    <p><i class="fas fa-headset"></i> For any technical issue, please contact 
+    <a href="mailto:osamah.kenawy@mwasalat.ae">osamah.kenawy@mwasalat.ae</a> or 
+    <a href="mailto:alpana.soni@mwasalat.ae">alpana.soni@mwasalat.ae</a></p>
+</div> -->
 
-							<?php /* <select class="selectpicker" data-style="btn-primary" name="location"> //
-							//  <option title="AUH" <?php if($loc == 'AUH') {?> selected='selected' <?php } ?> >AUH</option> //
-							//  <option title="DXB" <?php if($loc == 'DXB') {?> selected='selected' <?php } ?> >DXB</option> //
-							// </select> */ ?>
-
-
-								<div class="p-container">
-								
-									<div class="submit two">
-									<input type="submit" name="login" value="LOG IN" tabindex="3">
-									</div>
-									<div class="clear"> </div>
-								</div>
-
-							</form>
-					</div>
-				</div> 
-			</div> 			        					 
-				 <!-- <div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
-					 	<div class="facts">
-							 <div class="login">
-							<div class="buttons">
-								
-								
-							</div>
-							<form name="login" action="" method="post">
-								<input type="text" class="text" name="femail" value="" placeholder="Enter your username/registered email" required  ><a href="#" class=" icon email"></a>
-									
-										<div class="submit three">
-											<input type="submit" name="send" onClick="myFunction()" value="Send Email" >
-										</div>
-									</form>
-									</div>
-				         	</div>           	      
-				        </div>	 -->
-				     </div>	
-		        </div>
-	        </div>
-	     </div>
+<div class="login-container">
+    <div class="login-header">
+        <img src="images/mwasalat_holding_logo.png" alt="Mwasalat Logo">
+        <h2>MCR System</h2>
+        <p>Sign in to your account</p>
+    </div>
+    
+    <form class="login-form" name="login" action="" method="post">
+        <div class="input-group">
+            <input type="text" name="uemail" placeholder="Enter your username or email" tabindex="1" required>
+            <i class="fas fa-envelope"></i>
+        </div>
+        
+        <div class="input-group">
+            <input type="password" name="password" placeholder="Enter your password" tabindex="2" required>
+            <i class="fas fa-lock"></i>
+        </div>
+        
+        <button type="submit" name="login" class="login-btn" tabindex="3">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        
+        <div class="footer-text">
+            <p>Mwasalat &copy; <?php echo date('Y'); ?> - All Rights Reserved</p>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

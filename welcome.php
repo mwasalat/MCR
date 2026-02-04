@@ -10,293 +10,554 @@ if (strlen($_SESSION['id']==0)) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-  <style type="text/css">
-  body {
-    padding-top: 38px !important; 
-}
-    #HiddenInvalidInputContainer{
-      align-content: center;
-      color: red;
-    }
-
-    .alert{
-    display: none;
-}
-
-.btn-primary
-{
-   padding: 10px 20px;
-    font-size: 20px;
-    border-radius: 10px;
-    width:50%;    //Specify your width here
-
-}
-
-    .clear{
- clear:both;
- margin-top: 20px;
-}
-
-#searchResult{
- list-style: none;
- padding-top: 40px;
- /*width: 250px;*/
- position: absolute;
- margin: 0;
- height:200px;
- overflow: auto;
- z-index: 999;
-}
-
-#searchResult li{
- background: lavender;
- padding: 4px;
- margin-bottom: 1px;
-}
-
-
-.table-borderless td,
-.table-borderless th {
-    border: 0;
-}
-
-
-#searchResult li:nth-child(even){
- background: cadetblue;
- color: white;
-}
-
-#searchResult li:hover{
- cursor: pointer;
-}
-
-input[type=text]{
- padding: 5px;
- width: 200px;
- letter-spacing: 1px;
-}
-
-input[type=number]{
- padding: 5px;
- width: 200px;
- letter-spacing: 1px;
-}
-.borderless td, .borderless th {
-    border: none;
-}
-
-.navbar-nav > li > a {padding-top:3px !important; padding-bottom:3px !important;}
-.navbar {min-height:22px !important}
-
-  </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <title>MCR System - Mwasalat</title>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
-    <title>Welcome </title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="css/heroic-features.css" rel="stylesheet">
+    
     <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    
 <style type="text/css">
-  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-  border-top:0px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    background: url("images/bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    padding-top: 0 !important;
+}
+
+/* Header Styles */
+.main-header {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    padding: 15px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-section img {
+    height: 50px;
+    filter: brightness(0) invert(1);
+}
+
+.logo-section h1 {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.nav-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-section .user-info {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-section .user-info i {
+    font-size: 16px;
+}
+
+.nav-section .logout-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-section .logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Main Content */
+.main-content {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-header {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+    padding: 25px 30px;
+    color: #fff;
+}
+
+.form-header h2 {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-body {
+    padding: 30px;
+}
+
+/* Form Styling */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.form-group label {
+    min-width: 140px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    max-width: 300px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #e74c3c;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+/* Radio Button Styling */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    min-width: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-weight: 400;
+    padding: 8px 15px;
+    border-radius: 25px;
+    background: #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.radio-group label:hover {
+    background: #e0e0e0;
+}
+
+.radio-group input[type="radio"] {
+    accent-color: #e74c3c;
+    width: 16px;
+    height: 16px;
+}
+
+.radio-group input[type="radio"]:checked + span,
+.radio-group input[type="radio"]:checked ~ span {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+/* Submit Button */
+.submit-btn {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: #fff;
+    padding: 14px 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Reset Icon */
+.reset-icon {
+    color: #e74c3c;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.reset-icon:hover {
+    transform: rotate(90deg);
+}
+
+/* Search Results */
+#searchResult {
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    margin: 0;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 999;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    width: 300px;
+}
+
+#searchResult li {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#searchResult li:hover {
+    background: #f8f9fa;
+}
+
+#searchResult li:nth-child(even) {
+    background: #f0f4f8;
+}
+
+#searchResult li:nth-child(even):hover {
+    background: #e8ecf0;
+}
+
+/* Conditional Fields */
+.chqmodediv, .ccmodediv, .bnkmodediv {
+    display: none;
+}
+
+/* Alert */
+.alert {
+    display: none;
+    margin-top: 20px;
+}
+
+/* Hide spinner for number input */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-/* Firefox */
 input[type=number] {
-  -moz-appearance:textfield;
+    -moz-appearance: textfield;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .form-group label {
+        min-width: auto;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Footer */
+.page-footer {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+}
+
+.page-footer a {
+    color: #fff;
+    text-decoration: none;
 }
 </style>
 </head>
 <body>
 
-
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container hidden-xs
-        ">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-               
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-
-                <li>
-                        <a href="#">MCR</a>
-                    </li>
-                    <li>
-                        <a href="#"><?php echo $_SESSION['name'];?></a>
-                    </li>
-                    <li>
-                        <a href="logout.php">Logout</a>
-                    </li>
-                  
-                </ul>
-            </div>
+<!-- Header -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="images/mwasalat_holding_logo.png" alt="Mwasalat Logo">
+            <h1>MCR System</h1>
         </div>
-    </nav>
-   <div class="container borderless border-0" >
-         <div class="col-md-6" id="div1">
-          <form id="mcrform" name="mcrform" method="POST">
+        <nav class="nav-section">
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span><?php echo $_SESSION['name'];?></span>
+            </div>
+            <a href="logout.php" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="form-card">
+        <div class="form-header">
+            <h2><i class="fas fa-file-invoice-dollar"></i> Payment Collection</h2>
+        </div>
+        <div class="form-body">
+            <form id="mcrform" name="mcrform" method="POST">
 		  
 		  
 		 
-          <table class="table table-borderless">
-            <div id="HiddenInvalidInputContainer"></div>
-            <tbody>
-			
-			
-              <tr>
-			
-			 <div style="float: right;"> 
-			  <div>
-		  <td>Region </td>
-		  <td> <select name="location">
-			<?php // <option value="">-Select location--</option> ?>
-			<option value="AUH" <?php if($_SESSION['location']=='AUH') { echo 'selected';}?>>AUH</option>
-			<option value="DXB" <?php if($_SESSION['location']=='DXB') { echo 'selected';}?>>DXB</option>
-			</select>
-		  		  </div> </td>  </tr>
-      <tr>
-			
-			 <div style="float: right;"> 
-			  <div>
-		  <td>Company </td>
-		  <td> <select name="company" id="company">
-<option value="autostrad">Autostrad</option>
-			<option value="fast">Fast Rent A Car</option>
-			 <option value="fastline">Fast Line Bus Rental</option>
-              <option value="fastinvestment">Fast Investment</option>
-			</select>
-		  		  </div> </td>  </tr>
-
-
-<tr>
-<td>
- 
-  Customer Type
-  
-</td>
-<td>
-  <input type="radio" id="chkoldcustomer" checked="checked" name="chk"> Existing 
-   <input type="radio" id="chknewcustomer" name="chk"> Other Payments
-  </td>
-</tr>
-
-
-				  <tr>
-          <td>Customer<span style="color:red" id="configreset" class="glyphicon glyphicon-remove"></span></td>
-          <td><input type="text" name="txtCustomer" id="txtCustomer"  required>
-		 
-		  <?php /*
-		  <div style="float: right;">
-		  <select name="location">
-			<?php // <option value="">-Select location--</option> ?>
-			<option value="AUH" <?php if($_SESSION['location']=='AUH') { echo 'selected';}?>>AUH</option>
-			<option value="DXB" <?php if($_SESSION['location']=='DXB') { echo 'selected';}?>>DXB</option>
-			</select>
-		  
-		  </div>
-		  */ ?>
-		  </td>
-          <ul id="searchResult"></ul>
-              </tr>
-            
-              <tr>
-                <td>Phone</td>
-                <td><input type="text" name="phone1" id="phone1" readonly="true"></td>
-              </tr>
-               <tr>
-                <td>Email</td>
-                <td><input type="text" name="emailid" id="emailid" >
-
-                </td>
-              </tr>
-              <tr>
-                <td>Invoice#</td>
-                <td><input type="text" name="invoicenumber" id="invoicenumber"></td>
-              </tr>
-              <tr>
-                <td>Payment Mode</td>
-                <td>
-                  <input type="radio" name="paymentmode" value="cash" checked="true"> Cash 
-                  <input type="radio"  class="form-check-input" name="paymentmode" value="chq"> CQ  
-                   <input type="radio" name="paymentmode" value="cc"> CC 
-                   <input type="radio" name="paymentmode" value="bnktx">BANK
-                </td>
-              </tr>
-
-
-              <tr class="chqmodediv">
-                        <td></td>
-                        <td><input type="radio" name="cqmods" id="cqmodscdc" value="CDC" checked>CDC &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="cqmods" id="cqmodspdc" value="PDC">PDC</td>
-                </tr>
-
-
-                <tr class="chqmodediv">
-                        <td>Cheque number</td>
-                        <td><input type="text" name="chqnumber" id="chqnumber"></td>
-                </tr>
-                <tr class="chqmodediv">
-                        <td>Bank</td>
-                        <td><input type="text" name="chqbank" id="chqbank"></td>
-                </tr>
-                <tr class="ccmodediv">
-                        <td>CC Types</td>
-                        <td><input type="radio" name="cctypes" id="cctypesAmex" value="Amex"> &nbsp;&nbsp;Amex &nbsp;&nbsp;<input type="radio" name="cctypes" id="cctypesmastercard" value="mastercard"> &nbsp;&nbsp;Master Card &nbsp;&nbsp;<input type="radio" name="cctypes" id="cctypesvisa" value="visa">&nbsp;&nbsp;VISA&nbsp;&nbsp;<input type="radio" name="cctypes" id="cctypesdiscover" value="discover">&nbsp;&nbsp;Discover</td>
-                </tr>
-                <tr class="bnkmodediv">
-                        <td>Bank Name</td>
-                        <td><input type="text" name="bankname" id="bankname"></td>
-                </tr>
-                  </div>
-              <tr id="chequdateidtr">
-                <td id="chequdateid">Date</td>
-                <td><input type="text" name="chqdate" id="chqdate" placeholder="DD-MM-YYYY" required></td>
-              </tr>
-
-              <tr>
-                <td>Amount</td>
-                <td><input type="number" step="any" name="amount" id="amount" required></td>
-              </tr>
- 
-              <tr>
+                <div id="HiddenInvalidInputContainer"></div>
                 
-                <td>    </td>
-                <td> &nbsp;&nbsp;&nbsp; <button class="btn btn-primary" type="submit" id="butsave">
-                SAVE </button></td>
-              </tr>
- 
-              <div class="alert alert-success alert-dismissable">
-   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Success! message sent successfully.
-        </div>
-  
+                <!-- Region -->
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Region</label>
+                    <select name="location">
+                        <option value="AUH" <?php if($_SESSION['location']=='AUH') { echo 'selected';}?>>AUH</option>
+                        <option value="DXB" <?php if($_SESSION['location']=='DXB') { echo 'selected';}?>>DXB</option>
+                    </select>
+                </div>
 
-            </tbody>
-          </table>
-          <div><input type="text" name="pri_cust_id"  id="pri_cust_id" style="visibility: hidden;" >
-<input type="text" name="pscode"  id="pscode" style="visibility: hidden;" >
-<input type="text" name="glcod"  id="glcod" style="visibility: hidden;" ></div>
-        </form>
-        </div>
+                <!-- Company -->
+                <div class="form-group">
+                    <label><i class="fas fa-building"></i> Company</label>
+                    <select name="company" id="company">
+                        <option value="autostrad">Autostrad</option>
+                        <option value="fast">Fast Rent A Car</option>
+                        <option value="fastline">Fast Line Bus Rental</option>
+                        <option value="fastinvestment">Fast Investment</option>
+                    </select>
+                </div>
 
+                <!-- Customer Type -->
+                <div class="form-group">
+                    <label><i class="fas fa-user-tag"></i> Customer Type</label>
+                    <div class="radio-group">
+                        <label><input type="radio" id="chkoldcustomer" checked="checked" name="chk"> <span>Existing</span></label>
+                        <label><input type="radio" id="chknewcustomer" name="chk"> <span>Other Payments</span></label>
+                    </div>
+                </div>
+
+                <!-- Customer -->
+                <div class="form-group" style="position: relative;">
+                    <label><i class="fas fa-user"></i> Customer <span class="reset-icon" id="configreset"><i class="fas fa-times-circle"></i></span></label>
+                    <input type="text" name="txtCustomer" id="txtCustomer" required placeholder="Search customer...">
+                    <ul id="searchResult"></ul>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Phone</label>
+                    <input type="text" name="phone1" id="phone1" readonly="true" placeholder="Phone number">
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="text" name="emailid" id="emailid" placeholder="Email address">
+                </div>
+
+                <!-- Invoice# -->
+                <div class="form-group">
+                    <label><i class="fas fa-file-invoice"></i> Invoice #</label>
+                    <input type="text" name="invoicenumber" id="invoicenumber" placeholder="Invoice number">
+                </div>
+
+                <!-- Payment Mode -->
+                <div class="form-group">
+                    <label><i class="fas fa-credit-card"></i> Payment Mode</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="paymentmode" value="cash" checked="true"> <span>Cash</span></label>
+                        <label><input type="radio" name="paymentmode" value="chq"> <span>CQ</span></label>
+                        <label><input type="radio" name="paymentmode" value="cc"> <span>CC</span></label>
+                        <label><input type="radio" name="paymentmode" value="bnktx"> <span>BANK</span></label>
+                    </div>
+                </div>
+
+                <!-- Cheque Mode (conditional) -->
+                <div class="form-group chqmodediv">
+                    <label></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="cqmods" id="cqmodscdc" value="CDC" checked> <span>CDC</span></label>
+                        <label><input type="radio" name="cqmods" id="cqmodspdc" value="PDC"> <span>PDC</span></label>
+                    </div>
+                </div>
+
+                <!-- Cheque Number (conditional) -->
+                <div class="form-group chqmodediv">
+                    <label><i class="fas fa-money-check"></i> Cheque Number</label>
+                    <input type="text" name="chqnumber" id="chqnumber" placeholder="Cheque number">
+                </div>
+
+                <!-- Cheque Bank (conditional) -->
+                <div class="form-group chqmodediv">
+                    <label><i class="fas fa-university"></i> Bank</label>
+                    <input type="text" name="chqbank" id="chqbank" placeholder="Bank name">
+                </div>
+
+                <!-- CC Types (conditional) -->
+                <div class="form-group ccmodediv">
+                    <label><i class="fas fa-credit-card"></i> CC Types</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="cctypes" id="cctypesAmex" value="Amex"> <span>Amex</span></label>
+                        <label><input type="radio" name="cctypes" id="cctypesmastercard" value="mastercard"> <span>Master Card</span></label>
+                        <label><input type="radio" name="cctypes" id="cctypesvisa" value="visa"> <span>VISA</span></label>
+                        <label><input type="radio" name="cctypes" id="cctypesdiscover" value="discover"> <span>Discover</span></label>
+                    </div>
+                </div>
+
+                <!-- Bank Name (conditional) -->
+                <div class="form-group bnkmodediv">
+                    <label><i class="fas fa-university"></i> Bank Name</label>
+                    <input type="text" name="bankname" id="bankname" placeholder="Bank name">
+                </div>
+
+                <!-- Date -->
+                <div class="form-group" id="chequdateidtr">
+                    <label id="chequdateid"><i class="fas fa-calendar-alt"></i> Date</label>
+                    <input type="text" name="chqdate" id="chqdate" placeholder="DD-MM-YYYY" required>
+                </div>
+
+                <!-- Amount -->
+                <div class="form-group">
+                    <label><i class="fas fa-coins"></i> Amount</label>
+                    <input type="number" step="any" name="amount" id="amount" required placeholder="Enter amount">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <label></label>
+                    <button class="submit-btn" type="submit" id="butsave">
+                        <i class="fas fa-save"></i> SAVE
+                    </button>
+                </div>
+
+                <!-- Hidden Fields -->
+                <input type="hidden" name="pri_cust_id" id="pri_cust_id">
+                <input type="hidden" name="pscode" id="pscode">
+                <input type="hidden" name="glcod" id="glcod">
+
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    Success! Message sent successfully.
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="page-footer">
+    <p>Mwasalat &copy; <?php echo date('Y'); ?> - All Rights Reserved</p>
 </div>
 
     <script>
@@ -317,14 +578,14 @@ $('input[type=radio]').change(function () {
        if(chkval=='chq')
        {
            $(".chqmodediv").show();
-           $("#chequdateid").html("Cheque Date");
+           $("#chequdateid").html('<i class="fas fa-calendar-alt"></i> Cheque Date');
            $("#chequdateidtr").show();
 		   $("#chqdate").prop('required',true);
        }
        else
        {
         $(".chqmodediv").hide();
-        $("#chequdateid").html("Date");
+        $("#chequdateid").html('<i class="fas fa-calendar-alt"></i> Date');
         
        }
 
@@ -345,7 +606,7 @@ $('input[type=radio]').change(function () {
         if(chkval=='bnktx')
        {
            $("#chequdateidtr").show();
-         $("#chequdateid").html("Transferred Date");
+         $("#chequdateid").html('<i class="fas fa-calendar-alt"></i> Transferred Date');
         //$("#chequdateidtr").hide();
 		$("#chqdate").prop('required',false);
        
